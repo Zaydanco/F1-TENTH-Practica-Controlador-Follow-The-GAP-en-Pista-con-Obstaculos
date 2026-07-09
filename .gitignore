@@ -1,0 +1,22 @@
+# Compilación de ROS 2
+build/
+install/
+log/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Configuración de editores
+.vscode/
+.idea/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+*~
+
+# Registros de ROS
+*.bag
+*.db3
