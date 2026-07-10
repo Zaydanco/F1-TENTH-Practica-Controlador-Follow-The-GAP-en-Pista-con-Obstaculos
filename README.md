@@ -161,6 +161,34 @@ El vehículo oponente está limitado aproximadamente a:
 
 Durante el adelantamiento, el vehículo principal utiliza límites específicos para conservar una diferencia de velocidad suficiente sin hacer la maniobra demasiado brusca.
 
+## Velocidad angular
+
+La velocidad angular del vehículo no posee un valor único fijo a lo largo del recorrido, esto puesto que se ve afectado por los cambios en la velocidad lineal, el ángulo de dirección, los cambios en la pista como por ejemplo curvas abiertas y cerradas y por último las maniobras que se realicen para evadir obstáculos o adelantar al auto más lento.
+
+No obstante, podemos obtener esta información del componente:
+```python
+odom_msg.twist.twist.angular.z
+```
+
+Representada en radianes por segundo (`rad/s`) nos indica dependiendo de su valor:
+
+ - Si es un valor cercano a cero, el vehículo se desplaza prácticamente en línea recta.
+ - Si refleja un valor mayor el giro es más pronunciado.
+ - El signo positivo o negativo permite distinguir el sentido del giro.
+ 
+Debido a que el vehículo utiliza un modelo de dirección Ackermann, el
+controlador publica en `/drive` la velocidad lineal y el ángulo de dirección.
+La velocidad angular resultante no se establece como una constante, sino que
+se obtiene dinámicamente mediante el tópico de odometría:
+
+```text
+/ego_racecar/odom
+```
+
+Por lo tanto, no se puede asignar una sola velocidad angular para toda la
+simulación, pero sí se puede medir su valor instantáneo durante cada momento
+del recorrido.
+
 ## Requisitos
 
 - Ubuntu 22.04.
